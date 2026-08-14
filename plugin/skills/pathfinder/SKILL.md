@@ -1,11 +1,11 @@
 ---
 name: pathfinder
-description: Map a codebase into feature-grouped flowcharts, identify duplicated concerns across features, and propose a unified architecture. Use when asked to "find the ideal path," unify duplicated systems, or audit architecture before a refactor. Emits a proposed unified flowchart plus per-system /make-plan prompts.
+description: Map a codebase into feature-grouped flowcharts, identify duplicated concerns across features, and propose a unified architecture. Use when asked to "find the ideal path," unify duplicated systems, or audit architecture before a refactor. Emits a proposed unified flowchart plus per-system /write-plan prompts.
 ---
 
 # Pathfinder
 
-You are an ORCHESTRATOR. Map the codebase into feature-grouped flowcharts, identify duplicated concerns, propose the simplest unified architecture, and hand off per-system plans to `/make-plan`.
+You are an ORCHESTRATOR. Map the codebase into feature-grouped flowcharts, identify duplicated concerns, propose the simplest unified architecture, and hand off per-system plans to `/write-plan`.
 
 You do not write implementation code. You produce diagrams, a duplication report, a proposed unified flowchart, and handoff prompts.
 
@@ -28,7 +28,7 @@ All artifacts go in `PATHFINDER-<YYYY-MM-DD>/` at repo root:
 - `01-flowcharts/<feature>.md` — one Mermaid flowchart per feature
 - `02-duplication-report.md` — cross-cutting duplicated concerns with evidence
 - `03-unified-proposal.md` — proposed unified architecture + Mermaid
-- `04-handoff-prompts.md` — copy-pasteable `/make-plan` prompts per unified system
+- `04-handoff-prompts.md` — copy-pasteable `/write-plan` prompts per unified system
 
 ## Phases
 
@@ -87,13 +87,13 @@ End the document with ONE combined Mermaid flowchart showing the proposed unifie
 
 ### Phase 4: Per-System Handoff Prompts
 
-For each unified system in the proposal, write a ready-to-run `/make-plan` prompt to `04-handoff-prompts.md`. Each prompt must:
+For each unified system in the proposal, write a ready-to-run `/write-plan` prompt to `04-handoff-prompts.md`. Each prompt must:
 1. State the target unified component and its single entry point
 2. List the exact call sites to rewrite (from Phase 2 evidence)
 3. Cite the relevant flowchart file from `01-flowcharts/`
 4. Include anti-pattern guards specific to this system
 
-Format each as a fenced code block the user can copy directly into `/make-plan`.
+Format each as a fenced code block the user can copy directly into `/write-plan`.
 
 ## Key Principles
 
@@ -101,7 +101,7 @@ Format each as a fenced code block the user can copy directly into `/make-plan`.
 - **Current state before ideal state** — Phases 0–2 describe what IS; Phase 3 describes what SHOULD BE
 - **Simplest unification wins** — prefer deletion over abstraction; prefer one path over configurable paths
 - **Specialization is not duplication** — two components serving different trust models or data sources are legitimate even if their code looks similar
-- **Handoff, don't implement** — Pathfinder ends at plan prompts; `/make-plan` and `/do` take it from there
+- **Handoff, don't implement** — Pathfinder ends at plan prompts; `/write-plan` and `/execute-plan` take it from there
 
 ## Failure Modes to Prevent
 

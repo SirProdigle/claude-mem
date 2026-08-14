@@ -336,8 +336,9 @@ describe('Install Non-TTY Support', () => {
   });
 
   describe('post-install Next Steps copy', () => {
-    it('frames the choice as two paths', () => {
-      expect(installSource).toContain('Two paths from here:');
+    it('frames the single passive-memory path (fork: /learn-codebase removed)', () => {
+      expect(installSource).toContain('Memory builds passively from your first prompt.');
+      expect(installSource).not.toContain('Two paths from here:');
     });
 
     it('sets timing honesty about second-session memory injection', () => {
@@ -349,8 +350,8 @@ describe('Install Non-TTY Support', () => {
       expect(installSource).toContain("styleText('cyan', '~/.claude-mem')");
     });
 
-    it('keeps /learn-codebase as the optional front-load path', () => {
-      expect(installSource).toContain('/learn-codebase');
+    it('does not advertise /learn-codebase (removed in this fork)', () => {
+      expect(installSource).not.toContain('/learn-codebase');
     });
 
     it('demotes the uninstall caveat into a dim footer', () => {

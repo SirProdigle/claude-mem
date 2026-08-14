@@ -48,7 +48,7 @@ This project has no memory yet. The current session will seed it; subsequent ses
 
 Memory injection starts on your second session in a project.
 
-\`/learn-codebase\` is available if the user wants to front-load the entire repo into memory in a single pass (~5 minutes on a typical repo, optional). Otherwise memory builds passively as work happens.
+Memory builds passively as work happens.
 
 Live activity: {viewer_url}
 How it works: \`/how-it-works\`
