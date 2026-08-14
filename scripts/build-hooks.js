@@ -704,7 +704,7 @@ async function buildHooks() {
       'plugin/skills/mode-creator/SKILL.md',
       'plugin/skills/mode-creator/scripts/install-mode.mjs',
       'plugin/skills/mode-creator/scripts/configure-telegram.mjs',
-      'plugin/skills/smart-explore/SKILL.md',
+      // fork: smart-explore removed (see FORK.md)
       'plugin/skills/how-it-works/SKILL.md',
       'plugin/skills/how-it-works/onboarding-explainer.md',
       'plugin/hooks/hooks.json',
