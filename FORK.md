@@ -68,3 +68,16 @@ The only legitimate hit is `timeline-report/SKILL.md`, which matches `smart_sear
 `source_tool` value in historical observations — that is data, not a handoff, and must stay.
 
 `push` on the `upstream` remote is deliberately disabled.
+
+## Installing this fork
+
+`claude-skills` is pure markdown and installs straight from a directory. **claude-mem is not.** The
+published plugin carries two artifacts that are not in the repo:
+
+- `plugin/node_modules/` (~464 MB) — `cd plugin && bun install`
+- `plugin/ui/` — built from `src/ui`, produced by `npm run build`
+
+A directory-source install without those gives you a plugin whose worker and MCP server cannot start.
+Run the build first, verify the worker comes up (`npm run worker:logs`), and only then repoint
+`extraKnownMarketplaces.thedotmack` in `~/.claude/settings.json` at this clone. Until then the install
+stays on the upstream GitHub marketplace and this fork is source-only.
