@@ -1,6 +1,6 @@
 ---
 name: design-is
-description: Audit a design against Dieter Rams' ten "Good design is..." principles, then hand off a /write-plan prompt for one of three outcomes — new design, refine design, or redesign. Use when the user says "audit this design", "design review", "check this UI against Rams", "is this UI good", "critique this design", "design audit", or asks for a critique that should lead to a plan.
+description: Audit a design against Dieter Rams' ten "Good design is..." principles, then hand off a /grill-with-docs prompt for one of three outcomes — new design, refine design, or redesign. Use when the user says "audit this design", "design review", "check this UI against Rams", "is this UI good", "critique this design", "design audit", or asks for a critique that should lead to a plan.
 ---
 
 # Design Is
@@ -9,11 +9,11 @@ description: Audit a design against Dieter Rams' ten "Good design is..." princip
 
 - Routine UI code reviews → use `/review`
 - Pure copy edits → use a separate copy pass
-- Pre-design ideation with no artifact yet → start with `/brainstorm` directly
+- Pre-design ideation with no artifact yet → start with `/grill-with-docs` directly
 
-You are an ORCHESTRATOR. Audit a design against Dieter Rams' ten principles, score each principle with evidence, decide the outcome verdict (NEW / REFINE / REDESIGN), and hand off to `/write-plan` with a ready-to-run prompt.
+You are an ORCHESTRATOR. Audit a design against Dieter Rams' ten principles, score each principle with evidence, decide the outcome verdict (NEW / REFINE / REDESIGN), and hand off to `/grill-with-docs` with a ready-to-run prompt.
 
-You do not write implementation code. You produce: evidence-cited scores, a verdict, and a `/write-plan` handoff prompt.
+You do not write implementation code. You produce: evidence-cited scores, a verdict, and a `/grill-with-docs` handoff prompt.
 
 ## The Ten Principles (Dieter Rams)
 
@@ -52,7 +52,7 @@ All artifacts go in `DESIGN-IS-<YYYY-MM-DD>/` at repo root (or the project the u
 - `01-evidence.md` — per-principle evidence collected by subagents
 - `02-scorecard.md` — per-principle 0–3 score with one-line justification + total
 - `03-verdict.md` — NEW / REFINE / REDESIGN with reasoning
-- `04-handoff-prompt.md` — copy-pasteable `/write-plan` prompt for the chosen outcome
+- `04-handoff-prompt.md` — copy-pasteable `/grill-with-docs` prompt for the chosen outcome
 
 ## Phases
 
@@ -173,9 +173,9 @@ State the verdict in one sentence. Then list the 3–5 highest-leverage moves �
 - Recommending REDESIGN because a single screen is ugly (scope it)
 - Recommending NEW when an honest REDESIGN is warranted (don't dodge the critique)
 
-### Phase 4: /write-plan Handoff
+### Phase 4: /grill-with-docs Handoff
 
-Write `04-handoff-prompt.md` containing exactly ONE fenced `/write-plan` prompt matching the verdict. The prompt must be self-contained — the next session won't see this audit unless it's quoted in.
+Write `04-handoff-prompt.md` containing exactly ONE fenced `/grill-with-docs` prompt matching the verdict. The prompt must be self-contained — the next session won't see this audit unless it's quoted in.
 
 Use the matching template below. Fill every `<bracket>`. Include the top 3–5 moves from Phase 3 verbatim, each with its evidence anchor.
 
@@ -184,7 +184,7 @@ Use the matching template below. Fill every `<bracket>`. Include the top 3–5 m
 #### Template: NEW DESIGN
 
 ````
-/write-plan Design <product/screen/component name> from scratch.
+/grill-with-docs Design <product/screen/component name> from scratch.
 
 Primary user: <who>
 Primary task: <one sentence>
@@ -217,7 +217,7 @@ Anti-patterns to guard against (specific to NEW):
 #### Template: REFINE DESIGN
 
 ````
-/write-plan Refine <product/screen/component name> based on a Dieter Rams audit (total <X>/30).
+/grill-with-docs Refine <product/screen/component name> based on a Dieter Rams audit (total <X>/30).
 
 Verdict paragraph (quoted from 03-verdict.md):
 > <paste the one-sentence verdict here>
@@ -250,7 +250,7 @@ Anti-patterns to guard against (specific to REFINE):
 #### Template: REDESIGN
 
 ````
-/write-plan Redesign <product/screen/component name>. Current design failed audit at <X>/30 with critical gaps in principles <comma-separated list of 0-scored or 1-scored load-bearing principles>.
+/grill-with-docs Redesign <product/screen/component name>. Current design failed audit at <X>/30 with critical gaps in principles <comma-separated list of 0-scored or 1-scored load-bearing principles>.
 
 Verdict paragraph (quoted from 03-verdict.md):
 > <paste the one-sentence verdict here>
@@ -296,7 +296,7 @@ Anti-patterns to guard against (specific to REDESIGN):
 - **Score what is, not what was intended** — design is what ships, not what was drawn
 - **Honesty applies to the audit too** — if total is 28/30, say REFINE even if the user wanted a redesign; if it's 12/30, say REDESIGN even if the user wanted a refine
 - **One verdict, not three** — pick NEW or REFINE or REDESIGN; do not hedge
-- **Handoff, don't implement** — `design-is` ends at the `/write-plan` prompt; `/write-plan` and `/execute-plan` take it from there
+- **Handoff, don't implement** — `design-is` ends at the `/grill-with-docs` prompt; `/grill-with-docs`, `/to-spec` and `/to-tickets` take it from there
 - **Verdict commitment** — Once `02-scorecard.md` is written, the verdict follows the Phase 3 rule mechanically. Never re-score to back into a preferred verdict; if the scorecard says REDESIGN, the handoff is REDESIGN.
 
 ## Failure Modes to Prevent

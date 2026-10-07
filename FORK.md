@@ -89,3 +89,10 @@ After cutting over, restart the worker so it runs from the new root rather than 
 node plugin/scripts/bun-runner.js plugin/scripts/worker-service.cjs restart
 ps aux | grep worker-service.cjs   # should show this clone's path
 ```
+
+## 2026-10-07: handoffs repointed to pocock-skills
+
+claude-superpowers is no longer the process layer; [SirProdigle/pocock-skills](https://github.com/SirProdigle/pocock-skills)
+is. `design-is` and `pathfinder` now hand off `/grill-with-docs` prompts (was `/write-plan`), and `standup`
+sends its consolidation plan to `/to-tickets` then `/implement` (was `/execute-plan`). The tables above
+are kept as history.

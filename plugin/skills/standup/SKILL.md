@@ -22,7 +22,7 @@ The room is one shared file (default `~/.claude-mem/STANDUP.md`): YAML front
 matter holds the `goal` + `prompt`; the body is the transcript. Writes are
 atomically locked, so agents speak at once. It is **read-only** — agents decide
 how the merge *should* go; nobody commits or merges inside the room. Real git
-work happens afterward via `/execute-plan`.
+work happens afterward via `/to-tickets` and `/implement`.
 
 ## 1. Fill the room
 
@@ -114,8 +114,8 @@ they can make:
   `AskUserQuestion` for the clear-cut ones.
 
 Keep git internals out unless they ask. Once they've settled the open calls, hand
-the plan to **`/execute-plan`** to perform the merges — don't merge anything yourself
-outside `/execute-plan`.
+the plan to **`/to-tickets`** (then **`/implement`**) to perform the merges — don't merge anything yourself
+outside that flow.
 
 ## CLI
 
